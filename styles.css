@@ -1,0 +1,179 @@
+:root {
+    --bg-color: #1a1a2e;
+    --machine-color: #2e2e4f;
+    --accent-color: #e94560;
+    --text-light: #f0f0f0;
+    --text-dark: #1a1a2e;
+    --item-height: clamp(80px, 20vw, 90px);
+}
+
+* {
+    box-sizing: border-box;
+    cursor: none;
+}
+
+@media (pointer: coarse) {
+    * {
+        cursor: auto;
+    }
+    .cursor {
+        display: none;
+    }
+}
+
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-color);
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+    overflow: hidden; 
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: clamp(15px, 4vw, 25px) clamp(20px, 6vw, 60px);
+    z-index: 1000;
+}
+
+.logo {
+    font-size: clamp(1.4rem, 5vw, 1.8rem);
+    font-weight: 700;
+    color: var(--text-light);
+    letter-spacing: 1px;
+    user-select: none;
+}
+
+.logo-highlight {
+    color: var(--accent-color);
+}
+
+.cursor {
+    width: 15px;
+    height: 15px;
+    background-color: var(--text-light);
+    border-radius: 50%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 9999;
+    box-shadow: 0 0 15px var(--text-light), 
+                0 0 25px var(--text-light),
+                0 0 35px rgba(240, 240, 240, 0.5);
+    transition: transform 0.2s ease-out, opacity 0.2s ease-out;
+}
+
+.cursor.hover-effect {
+    transform: translate(-50%, -50%) scale(2.5);
+    opacity: 0.5;
+}
+
+.parallax-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.shape {
+    position: absolute;
+    transition: transform 0.2s ease-out;
+}
+
+.shape-circle {
+    border-radius: 50%;
+    background: rgba(233, 69, 96, 0.08);
+}
+
+.shape-rect {
+    background: rgba(46, 46, 79, 0.5);
+}
+
+.shape1 { width: 30vmin; height: 30vmin; top: 20%; left: 10%; }
+.shape2 { width: 10vmin; height: 10vmin; top: 70%; left: 30%; }
+.shape3 { width: 20vmin; height: 20vmin; top: 40%; left: 80%; }
+.shape4 { width: 15vmin; height: 15vmin; top: 85%; left: 60%; }
+.shape5 { width: 40vmin; height: 40vmin; top: 80%; left: -5%; }
+.shape6 { width: 12vmin; height: 12vmin; top: 10%; left: 55%; }
+.shape7 { width: 25vmin; height: 25vmin; top: -10%; left: 70%; }
+.shape8 { width: 10vmin; height: 10vmin; top: 55%; left: 45%; }
+.shape9 { width: 40vmin; height: 1.5vmin; top: 95%; left: 80%; }
+.shape10 { width: 1.5vmin; height: 35vmin; top: 5%; left: 35%; }
+
+.game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5vh;
+    width: 100%;
+    padding: 0 20px;
+}
+
+.slot-machine {
+    position: relative;
+    width: 90vw;
+    max-width: 400px;
+    height: 50vw;
+    max-height: 220px;
+    background-color: var(--machine-color);
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid rgba(240, 240, 240, 0.1);
+}
+
+.reel-window {
+    width: 75%;
+    height: var(--item-height);
+    background: var(--bg-color);
+    border: 3px solid var(--text-light);
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.4);
+}
+
+.reel {
+    transition: transform 5s cubic-bezier(0.2, 1, 0.4, 1);
+}
+
+.reel-item {
+    height: var(--item-height);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: clamp(1.8rem, 6vw, 2.2rem);
+    font-weight: 700;
+    color: var(--text-light);
+    text-transform: uppercase;
+}
+
+#spin-button {
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(1rem, 4vw, 1.2rem);
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: white;
+    background-color: var(--accent-color);
+    border: none;
+    border-radius: 12px;
+    padding: clamp(12px, 3vh, 15px) clamp(40px, 10vw, 50px);
+    box-shadow: 0 5px 15px rgba(233, 69, 96, 0.4);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#spin-button:disabled {
+    opacity: 0.6;
+    transform: translateY(0);
+    box-shadow: 0 5px 10px rgba(233, 69, 96, 0.4);
+}
